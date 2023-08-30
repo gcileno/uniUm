@@ -29,6 +29,15 @@
 
     let cervejas = ["Guiness","Desperados","Becks", "Skol", "Brhama", "Stela"]
 
+    function shuffleArray(array) {
+    // Função de comparação aleatória
+        function compareRandom(a, b) {
+            return Math.random() - 0.5;
+        }
+        // Embaralhar o array usando a função de comparação aleatória
+        return array.sort(compareRandom);
+    }
+
     function transformar(item){
        return `<tr><td>${item}</td></tr>`
     }    
@@ -47,7 +56,8 @@
 
     function embaralharDiv(){
         let div = document.getElementById("tabela")
-        let tabela = cervejas.map(transformar)
+        let arqu = shuffleArray(cervejas)
+        let tabela = arqu.map(transformar)
         div.innerHTML= `<table class="table">${tabela}</table>`
     }
 
