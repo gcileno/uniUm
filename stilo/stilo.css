@@ -1,0 +1,9 @@
+.card{
+    width: auto;
+}
+
+.column{
+    background-color: aquamarine;
+    border: 16%;
+    margin: 16px;
+}
