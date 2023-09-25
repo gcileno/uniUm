@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="stilo/stilo.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+
+	<nav class="navbar" role="navigation" aria-label="main navigation">
+	  <div class="navbar-brand">
+	    <a class="navbar-item" href="https://bulma.io">
+	      <img src="https://webformas.b-cdn.net/marvidistribuidora/images/distribuidora-de-cerveja-em-sao-paulo-sp.jpg" width="112" height="28">
+	    </a>
+
+	    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+	      <span aria-hidden="true"></span>
+	      <span aria-hidden="true"></span>
+	      <span aria-hidden="true"></span>
+	    </a>
+
+	  </div>
+	</nav>
+
+	<div class="container">
+	    <div class="buttons">
+	        <button id="botaoCarregar" class="button is-primary">Carregando cervejas...</button>
+	        <button id="botaoOrdenar" class="button is-primary">Ordenar Bebidas</button>
+	        <button id="botaoEmbaralhar" class="button is-primary">Embaralhar Bebidas</button>
+	    </div>
+
+	    <div id="cervejasDiv">
+	    	
+	    </div>
+    </div>
+	
+</body>
+   <script>
+
+      let cervejas = [
+         {
+            name: "Guiness", 
+            alcohol: "10%",
+            tipo: "pilsen",
+            preco: "R$ 5,50"
+         }, 
+
+         {
+            name: "Desperados",
+            alcohol: "6%",             
+			tipo: "pilsen",
+			preco: "R$ 8,50"
+         }, 
+
+         {
+            name: "Becks",
+            alcohol: "5%",
+            tipo: "puro malte",
+            preco: "R$ 2,50"             
+         }
+
+      ]
+
+    
+	  const CarregarDiv = (data, div = document.getElementById("cervejasDiv")) => {
+		if (typeof data !== "object" || data === null) {
+			console.error("O argumento 'data' deve ser um objeto.");
+			return;
+		}
+
+		const keys = Object.keys(data[0]);
+
+		const tableHtml = `
+			<table class="table">
+				<thead>
+					<tr>
+					${keys.map(key => `<th>${key}</th>`).join("")}
+					</tr>
+				</thead>
+				<tbody>
+					${data.map(obj => `
+					<tr>
+						${keys.map(key => `<td>${obj[key]}</td>`).join("")}
+					</tr>
+					`).join("")}
+				</tbody>
+			</table>
+		`;
+
+		div.innerHTML = tableHtml;
+		}
+
+
+		const OrdenarDiv = cs =>{
+		const div = document.getElementById("cervejasDiv")
+		const itensHtml = cs.map( item => 
+			`<tr>
+			<td>${item['name']}</td>
+			<td>${item['alcohol']}</td>
+			<td>${item['tipo']}</td>
+			<td>${item['preco']}</td>
+			</tr>`).sort()
+
+			div.innerHTML = `<table class="table">${itensHtml.join("\n")}</table>`
+		}
+
+	  //carregar para uma div
+      let botao = document.getElementById("botaoCarregar")
+      botao.addEventListener("click", () => CarregarDiv(cervejas))
+
+	  //ordenar elementos
+	  let ordenar = document.getElementById("botaoOrdenar")
+	  ordenar.addEventListener("click", ()=>{OrdenarDiv(cervejas)})
+
+	                   
+
+
+
+   </script>
+</html>
