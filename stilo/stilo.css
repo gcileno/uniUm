@@ -1,3 +1,7 @@
+.container{
+    margin: 16px;
+}
+
 .card{
     width: auto;
 }
@@ -7,3 +11,4 @@
     border: 16%;
     margin: 16px;
 }
+

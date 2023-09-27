@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="stilo/stilo.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<script src="libs/script.js"></script>
+</head>
+
+<body>
+
+	<nav class="navbar" role="navigation" aria-label="main navigation">
+	  <div class="navbar-brand">
+	    <a class="navbar-item" href="https://bulma.io">
+	      <img src="https://webformas.b-cdn.net/marvidistribuidora/images/distribuidora-de-cerveja-em-sao-paulo-sp.jpg" width="112" height="28">
+	    </a>
+
+	    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+	      <span aria-hidden="true"></span>
+	      <span aria-hidden="true"></span>
+	      <span aria-hidden="true"></span>
+	    </a>
+
+	  </div>
+	</nav>
+
+	<div class="container">
+
+		<section class="hero is-warning">
+			<div class="hero-body">
+			  <p class="title">
+				Tenstando a API_Random
+			  </p>
+			  <p class="subtitle">
+				As APIs de dados aleatórias são uma ferramenta poderosa e versátil no mundo da programação e desenvolvimento de software. Eles oferecem uma série de benefícios que podem ser aproveitados em diversas áreas e cenários. Abaixo, destacamos alguns dos principais benefícios do uso de APIs de dados aleatórios: ## 1. Testes Automatizados Eficientes Uma das aplicações mais comuns para APIs de dados aleatórios é a realização de testes automatizados de software. Eles permitem que os desenvolvedores gerem dados fictícios ou calculados para simular cenários diversos. Isso é particularmente útil para testar como o software se comporta em situações imprevisíveis.
+			  </p>
+			</div>
+		</section>
+
+		<section class="hero is-link">
+			<div class="hero-body">
+			  <p class="title">
+				Conhecer a api usada nessa atividade 
+			  </p>
+			  <p class="subtitle">
+				<a href="https://random-data-api.com/" target="_blank">Clique aqui, ou</a>
+				Ver exemplos de sáida da api clique em um dos botões para gerar dados aleatórios sobre os temas:
+			  </p>
+			</div>
+			<div class="hero-foot">
+				<nav class="tabs is-boxed is-fullwidth">
+				  <div class="container">
+					<p class="subtitle">
+					</p>
+					<ul>
+					  <li id="tipoSangue"><a>Tipos sanguinios</a></li>
+					  <li id="cervejas"><a>Cervejas</a></li>
+					  <li><a>#</a></li>
+					  <li><a>#</a></li>
+					  <li><a>#</a></li>
+					  <li><a>#</a></li>
+					</ul>
+				  </div>
+				</nav>
+			  </div>
+		  </section>
+
+		  <div id="mostrarTabela">
+	    	
+		  </div>
+    </div>
+	
+</body>
+
+<script>
+
+
+	let api_random=["https://random-data-api.com/api/v2/beers?size=10", "https://random-data-api.com/api/v2/blood_types?size=10"]
+    let cervejas = []
+    
+    //função assicrona
+    async function carregaraApiRandom(URL){
+        try{
+            let res = await fetch(URL)
+            cervejas = await res.json()
+            CriarTabela(cervejas)
+            }catch(err){
+            document.getElementById("mostrarTabela").innerHTML = "Fudeu..."
+            }
+        }
+
+	  //carregar para uma div
+      let cerva = document.getElementById("cervejas")
+      cerva.addEventListener("click", () => carregaraApiRandom(api_random[0]))
+
+	  //ordenar elementos
+	  let ordenar = document.getElementById("tipoSangue")
+	  ordenar.addEventListener("click", ()=> carregaraApiRandom(api_random[1]))
+
+   </script>
+</html>
